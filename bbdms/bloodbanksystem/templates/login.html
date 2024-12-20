@@ -1,0 +1,160 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>BBDMS </title>
+    <meta
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+      name="viewport"
+    />
+
+
+    <!-- Fonts and icons -->
+    <script src="{% static 'assets/js/plugin/webfont/webfont.min.js'%}"></script>
+    <script>
+      WebFont.load({
+        google: { families: ["Public Sans:300,400,500,600,700"] },
+        custom: {
+          families: [
+            "Font Awesome 5 Solid",
+            "Font Awesome 5 Regular",
+            "Font Awesome 5 Brands",
+            "simple-line-icons",
+          ],
+          urls: ["{% static 'assets/css/fonts.min.css'%}"],
+        },
+        active: function () {
+          sessionStorage.fonts = true;
+        },
+      });
+    </script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css'%}" />
+    <link rel="stylesheet" href="{% static 'assets/css/plugins.min.css'%}" />
+    <link rel="stylesheet" href="{% static 'assets/css/kaiadmin.min.css'%}" />
+
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link rel="stylesheet" href="{% static 'assets/css/demo.css'%}" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Sidebar -->
+    
+      <!-- End Sidebar -->
+
+      <div class="main-panel">
+        
+
+        <div class="container">
+            <div class="page-inner">
+             
+                <div class="row">
+                
+                  <div class="col-md-8 ps-md-0 pe-md-0">
+                    <div class="card card-pricing card-pricing-focus card-primary">
+                      <div class="card-header">
+                        <h4 class="card-title">Login</h4>
+                        <div class="card-price">
+                            Access to our dashboard
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        {% if messages %}
+                        {% for message in messages %}
+                         {% if message.tags == 'error' %}
+                       <div class="alert alert-warning alert-dismissible fade show" role="alert" style="color: red;">
+                      {{message}}
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                         </button>
+                          </div>
+                       {% endif %}
+                        {% endfor %}
+                       {% endif %}
+                           {% if messages %}
+                        {% for message in messages %}
+                         {% if message.tags == 'success' %}
+                       <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                      {{message}}
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                         </button>
+                          </div>
+                       {% endif %}
+                        {% endfor %}
+                       {% endif %}
+                    <form action="{% url 'doLogin' %}"  method="POST" >
+                        {% csrf_token %}
+                        
+                        
+                       <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Your Username" name="username">
+                       </div>
+                       <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password" name="password">
+                       </div>
+                       <div class="form-group">
+                          <button class="btn btn-light w-20" type="submit">Login</button>
+                       </div>
+                       <div class="form-group">
+                        <a href="{% url 'index' %}" style="color: white;"><i class="fa fa-home" aria-hidden="true"> Home Page</i></a>                     </div>
+                        <div class="form-group">
+                          <a href="{% url 'donorsignup' %}" style="color: white;"><i class="fa fa-sign-in" aria-hidden="true"> Donor Signup</i></a>                     </div>
+                    </form>
+                      </div>
+                      
+                    </div>
+                  </div>
+                
+                 
+                </div>
+                
+              </div>
+        </div>
+
+      
+      </div>
+
+      <!-- End Custom template -->
+    </div>
+    <!--   Core JS Files   -->
+    <script src="{% static 'assets/js/core/jquery-3.7.1.min.js'%}"></script>
+    <script src="{% static 'assets/js/core/popper.min.js'%}"></script>
+    <script src="{% static 'assets/js/core/bootstrap.min.js'%}"></script>
+
+    <!-- jQuery Scrollbar -->
+    <script src="{% static 'assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js'%}"></script>
+
+    <!-- Chart JS -->
+    <script src="{% static 'assets/js/plugin/chart.js/chart.min.js'%}"></script>
+
+    <!-- jQuery Sparkline -->
+    <script src="{% static 'assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js'%}"></script>
+
+    <!-- Chart Circle -->
+    <script src="{% static 'assets/js/plugin/chart-circle/circles.min.js'%}"></script>
+
+    <!-- Datatables -->
+    <script src="{% static 'assets/js/plugin/datatables/datatables.min.js'%}"></script>
+
+    <!-- Bootstrap Notify -->
+    <script src="{% static 'assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js'%}"></script>
+
+    <!-- jQuery Vector Maps -->
+    <script src="{% static 'assets/js/plugin/jsvectormap/jsvectormap.min.js'%}"></script>
+    <script src="{% static 'assets/js/plugin/jsvectormap/world.js'%}"></script>
+
+    <!-- Sweet Alert -->
+    <script src="{% static 'assets/js/plugin/sweetalert/sweetalert.min.js'%}"></script>
+
+    <!-- Kaiadmin JS -->
+    <script src="{% static 'assets/js/kaiadmin.min.js'%}"></script>
+
+    <!-- Kaiadmin DEMO methods, don't include it in your project! -->
+    <script src="{% static 'assets/js/setting-demo.js'%}"></script>
+    
+   
+  </body>
+</html>

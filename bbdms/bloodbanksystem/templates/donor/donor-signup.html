@@ -1,0 +1,210 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>BBDMS </title>
+    <meta
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+      name="viewport"
+    />
+
+
+
+    <!-- Fonts and icons -->
+    <script src="{% static 'assets/js/plugin/webfont/webfont.min.js'%}"></script>
+    <script>
+      WebFont.load({
+        google: { families: ["Public Sans:300,400,500,600,700"] },
+        custom: {
+          families: [
+            "Font Awesome 5 Solid",
+            "Font Awesome 5 Regular",
+            "Font Awesome 5 Brands",
+            "simple-line-icons",
+          ],
+          urls: ["{% static 'assets/css/fonts.min.css'%}"],
+        },
+        active: function () {
+          sessionStorage.fonts = true;
+        },
+      });
+    </script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css'%}" />
+    <link rel="stylesheet" href="{% static 'assets/css/plugins.min.css'%}" />
+    <link rel="stylesheet" href="{% static 'assets/css/kaiadmin.min.css'%}" />
+
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link rel="stylesheet" href="{% static 'assets/css/demo.css'%}" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Sidebar -->
+    
+      <!-- End Sidebar -->
+
+      <div class="main-panel">
+        
+
+        <div class="container">
+            <div class="page-inner">
+             
+                <div class="row">
+                
+                  <div class="col-md-8 ps-md-0 pe-md-0">
+                    <div class="card card-pricing card-pricing-focus card-primary">
+                      <div class="card-header">
+                        <h4 class="card-title">Registrations</h4>
+                        <div class="card-price">
+                            Register With Us!!!
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        {% if messages %}
+                        {% for message in messages %}
+                         {% if message.tags == 'error' %}
+                       <div class="alert alert-warning alert-dismissible fade show" role="alert" style="color: red;">
+                      {{message}}
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="color: red;">
+                     <span aria-hidden="true">&times;</span>
+                         </button>
+                          </div>
+                       {% endif %}
+                        {% endfor %}
+                       {% endif %}
+                           {% if messages %}
+                        {% for message in messages %}
+                         {% if message.tags == 'success' %}
+                       <div class="alert alert-warning alert-dismissible fade show" role="alert" style="color: red;">
+                      {{message}}
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="color: red;">
+                     <span aria-hidden="true">&times;</span>
+                         </button>
+                          </div>
+                       {% endif %}
+                        {% endfor %}
+                       {% endif %}
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        
+                        <div class="form-group">
+                            <label>Profile Pic</label>
+                            <input id="pic" type="file" class="form-control" name="pic" required="true">
+                           </div>
+                       <div class="form-group">
+                        <label>First Name</label>
+                        <input id="first_name" type="text" class="form-control" placeholder="First Name" name="first_name" required="true">
+                       </div>
+                       <div class="form-group">
+                        <label>Last Name</label>
+                        <input id="last_name" type="text" class="form-control" placeholder="Last Name" name="last_name" required="true">
+                       </div>
+                       <div class="form-group">
+                        <label>Email</label>
+                        <input id="email" type="email" class="form-control" placeholder="Email" name="email" required="true">
+                       </div>
+                       <div class="form-group">
+                        <label>Userame</label>
+                        <input id="username" type="text" class="form-control" placeholder="Enter Username" name="username" required="true">
+                       </div>
+                       <div class="form-group">
+                        <label>Mobile Number</label>
+                        <input id="mobno" type="text" class="form-control" placeholder="Mobile" name="mobno" maxlength="10" pattern="[0-9]+" required="true">
+                       </div>
+                       <div class="form-group">
+                          <label>Age</label>
+                          <input id="age" type="text" class="form-control" placeholder="Enter Your Age" name="age" required="true">
+                         </div>
+                       <div class="form-group">
+                        <label>Blood Group</label>
+                        <select type="text" name="bg_id" id="bg_id" value="" class="form-control" required="true">
+                            <option value="">Choose Blood Group</option>
+                            {% for i in bg %}
+       
+                                  <option value="{{i.id}}">{{i.bloodgroup}}</option>{% endfor %}
+
+                            </select>
+                       </div>
+                       <div class="form-group">
+                        <label>Gender</label>
+                        <select id="gender" class="form-control" name="gender" required="true">
+                            <option value="">Select</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                       </div>
+                       <div class="form-group">
+                        <label>Address</label>
+                        <textarea id="address" class="form-control" name="address" required="true" rows="8" cols="12"></textarea>
+                       </div>
+                       <div class="form-group">
+                        <label>Password</label>
+                        <input id="password" type="password" class="form-control" placeholder="Password" name="password" required="true">
+                       </div>
+                       <div class="form-group">
+                          <button class="btn btn-light w-20" type="submit">Register</button>
+                       </div>
+                       <div class="form-group">
+                        <a href="{% url 'login' %}" style="color: white;"><i class="fa fa-sign-in" aria-hidden="true"> Already Registered</i></a>                     </div>
+                       <div class="form-group">
+                        <a href="{% url 'index' %}" style="color: white;"><i class="fa fa-home" aria-hidden="true"> Home Page</i></a>                     </div>
+                    </form>
+                      </div>
+                      
+                    </div>
+                  </div>
+                
+                 
+                </div>
+                
+              </div>
+        </div>
+
+      
+      </div>
+
+      <!-- End Custom template -->
+    </div>
+    <!--   Core JS Files   -->
+    <script src="{% static 'assets/js/core/jquery-3.7.1.min.js'%}"></script>
+    <script src="{% static 'assets/js/core/popper.min.js'%}"></script>
+    <script src="{% static 'assets/js/core/bootstrap.min.js'%}"></script>
+
+    <!-- jQuery Scrollbar -->
+    <script src="{% static 'assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js'%}"></script>
+
+    <!-- Chart JS -->
+    <script src="{% static 'assets/js/plugin/chart.js/chart.min.js'%}"></script>
+
+    <!-- jQuery Sparkline -->
+    <script src="{% static 'assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js'%}"></script>
+
+    <!-- Chart Circle -->
+    <script src="{% static 'assets/js/plugin/chart-circle/circles.min.js'%}"></script>
+
+    <!-- Datatables -->
+    <script src="{% static 'assets/js/plugin/datatables/datatables.min.js'%}"></script>
+
+    <!-- Bootstrap Notify -->
+    <script src="{% static 'assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js'%}"></script>
+
+    <!-- jQuery Vector Maps -->
+    <script src="{% static 'assets/js/plugin/jsvectormap/jsvectormap.min.js'%}"></script>
+    <script src="{% static 'assets/js/plugin/jsvectormap/world.js'%}"></script>
+
+    <!-- Sweet Alert -->
+    <script src="{% static 'assets/js/plugin/sweetalert/sweetalert.min.js'%}"></script>
+
+    <!-- Kaiadmin JS -->
+    <script src="{% static 'assets/js/kaiadmin.min.js'%}"></script>
+
+    <!-- Kaiadmin DEMO methods, don't include it in your project! -->
+    <script src="{% static 'assets/js/setting-demo.js'%}"></script>
+    
+   
+  </body>
+</html>
